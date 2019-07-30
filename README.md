@@ -7,7 +7,7 @@ This is a remake of the jQuery-Pinlogin plugin I created a while ago, but now bu
 
 ## Demo
 A screenshot of the plugins pincode input fields with single instance to illustrate a login procedure and two instances for registration purposes:   
-![screenshot](https://github.com/bobhageman/pinlogin/blob/master/demo/example.png)
+![screenshot](https://raw.githubusercontent.com/bobhageman/pinlogin/master/demo/example.png)
 
 For a working example go to:   
 https://www.mybo.nu/static/pinlogin/   
