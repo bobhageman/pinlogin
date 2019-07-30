@@ -3,7 +3,7 @@ Component to create a cross-device pincode login experience.
 
 The number of pincode input fields are configurable and the plugin is made in such way that it's able to tackle most usecases. After entering a complete pin code the 'complete' callback will be fired which gives you the possibility to do any further processing. No form or hidden input fields are used to give you the freedom of choice how to handle the pincode input. It is also possible to have multiple instances so you can have a 'registration' procedure where the user needs to enter the pincode twice. How this works is visible in the demo.
 
-This is a remake of the jQuery-Pinlogin plugin I created a while ago, but now built to be independent of jQuery while it is still possible to use it as a jQuery plugin.
+This is a remake of the [jQuery-Pinlogin](https://github.com/bobhageman/jquery-pinlogin) plugin I created a while ago, but now built to be independent of jQuery while it is still possible to use it as a jQuery plugin.
 
 ## Demo
 A screenshot of the plugins pincode input fields with single instance to illustrate a login procedure and two instances for registration purposes:   
