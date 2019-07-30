@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Pinlogin - demo</title>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<!-- To display the special character as placeholder correctly -->
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		
+		<!-- include Pinlogin plugin-->
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
+		<script src="../dist/pinlogin.pkgd.min.js"></script>
+		<link href="../dist/pinlogin.css" rel="stylesheet" type="text/css" />
+		
+		<link href="style.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+	
+		<header>
+			<h1>PINLOGIN DEMO</h1>
+		</header>
+	
+		<main>
+			<div class="container">
+				
+				<h2>Login</h2>
+				<p>Please enter your pincode</p>
+				
+				<div id="loginpin"></div>
+				
+				<br />
+				<hr />
+				<br />
+			
+				<h2>Register</h2>
+				<p>Type and re-type your pincode to register</p>
+				
+				<div id="registerpin"></div>
+				<br />
+				<div id="registerpinretype"></div>
+				
+			</div>
+		</main>
+	
+		<footer>
+			
+			<a href="https://github.com/bobhageman/pinlogin" target="_blank"><img src="github.png" width="20" /> View on GitHub</a>
+		
+		</footer>
+		
+		<script type="text/javascript">
+		
+		document.addEventListener("DOMContentLoaded", function(event) {	
+			
+			// ---- Basic example with 4 fields -----
+			
+			var loginpin =  new Pinlogin(document.querySelector('#loginpin'), {
+			
+					fields : 4,
+					
+					complete : function(pin){
+						
+						// further processing here
+						alert ('Awesome! You entered: ' + pin);
+					},	
+				});
+				
+			// ---- Pincode input with retype functionality, as a jQuery plugin ----- 
+			
+			var pincode = '';
+			
+			var registerpin = $('#registerpin').pinlogin({
+				placeholder : '*',
+				reset : false,
+				autofocus : false,
+				complete : function(pin){
+
+					pincode = pin;
+					
+					// focus on the first field of the pincode retype instance
+					registerpinretype.focus(0);
+					
+					// disable this instance
+					registerpin.disable();					
+				}	
+			});
+			
+			var registerpinretype = new Pinlogin(document.querySelector('#registerpinretype'),{
+				placeholder : '*',
+				reset : false,
+				autofocus : false,
+				complete : function(pin){
+					
+					// compare entered pincodes
+					if (pincode !== pin){
+						pincode = '';
+						
+						// reset both instances
+						registerpin.reset();
+						registerpinretype.reset();
+						
+						// disable repeat instance
+						registerpinretype.disable(); 
+						
+						// set focus to first instance again
+						registerpin.focus(0);
+						
+						alert ('Pincodes do not match, please try again');
+					}
+					else {
+					
+						// reset both instances
+						registerpin.reset();
+						registerpinretype.reset(); 
+						
+						// disable both instances
+						registerpin.disable();
+						registerpinretype.disable(); 
+						
+						// further processing here
+						alert ('Awesome! You entered: ' + pin);
+					}
+				}
+			});	
+
+			// disable repeat instance at start
+			registerpinretype.disable();
+		});
+		</script>
+		
+	</body>
+</html>
